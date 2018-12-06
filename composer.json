@@ -1,0 +1,21 @@
+{
+  "name": "pkorniev/yii2-language",
+  "description": "Simple language extension for Yii2.",
+  "type": "yii2-extension",
+  "keywords": ["yii2","extension","language"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pavlo Korniev",
+      "email": "pkorniev@gmail.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "~2.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "pkorniev\\language\\": "src/"
+    }
+  }
+}
