@@ -9,6 +9,7 @@ class PKUrlManager extends UrlManager
 {
 
     public function createUrl($params) {
+
         $url = parent::createUrl($params);
 
         $currentLang = Yii::$app->language;
