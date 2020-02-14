@@ -3,13 +3,15 @@
 namespace pkorniev\language;
 
 
-use yii\base\Model;
+use yii\base\Component;
 
-class PKTranslateConfigurator extends Model
+class PKTranslator extends Component
 {
     public $supportedLanguages = ['en' => 'en-US'];
     public $defaultLanguage = 'en';
+    public $expiredLangCookie = 60*60*24*30;
     public $hideLangUrl = false;
+    public $cookieRemember = false;
 
     /**
      * Returns supported languages for translate
@@ -36,5 +38,23 @@ class PKTranslateConfigurator extends Model
     public function getHideLangUrl()
     {
         return $this->hideLangUrl;
+    }
+
+    /**
+     * Returns expiredLangCookie
+     * @return int
+     */
+    public function getExpiredLangCookie()
+    {
+        return $this->expiredLangCookie;
+    }
+
+    /**
+     * Returns flag for remember current lang in cookie
+     * @return bool
+     */
+    public function getCookieRemember()
+    {
+        return $this->cookieRemember;
     }
 }

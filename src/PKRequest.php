@@ -3,6 +3,7 @@
 namespace pkorniev\language;
 
 use Yii;
+use yii\web\Cookie;
 use yii\web\Request;
 use yii\base\InvalidConfigException;
 
@@ -22,16 +23,23 @@ class PKRequest extends Request
 
         $langUrl = (isset($urlList[1]) && in_array($urlList[1],array_keys($supportedLanguages))) ? $urlList[1] : null;
 
-
-
         if ($hideLangUrl) {
             //TODO THIS CASE LATER
         }
         else {
-            $lang = $supportedLanguages[$defaultLanguage];
+            $cookies = Yii::$app->request->cookies;
+            $lang = $cookies->getValue('language', $supportedLanguages[$defaultLanguage]);
 
             if (in_array($langUrl,array_flip($supportedLanguages))){
                 $lang = $supportedLanguages[$langUrl];
+            }
+
+            if (Yii::$app->language != $lang && Yii::$app->translator->getCookieRemember()) {
+                Yii::$app->response->cookies->add(new Cookie([
+                    'name' => 'language',
+                    'value' => $lang,
+                    'expire' => time()+Yii::$app->translator->expiredLangCookie,
+                ]));
             }
 
             Yii::$app->language = $lang;
