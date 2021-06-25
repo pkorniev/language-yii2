@@ -5,13 +5,21 @@ namespace pkorniev\language;
 
 use yii\base\Component;
 
+/**
+ * Class PKTranslator
+ * @package pkorniev\language
+ *
+ * @var array $supportedLanguages
+ * @var string $defaultLanguage
+ * @var int $expiredLangCookie
+ * @var bool $cookieRemember
+ */
 class PKTranslator extends Component
 {
     public $supportedLanguages = ['en' => 'en-US'];
     public $defaultLanguage = 'en';
     public $expiredLangCookie = 60*60*24*30;
-    public $hideLangUrl = false;
-    public $cookieRemember = false;
+    public $cookieRemember = true;
 
     /**
      * Returns supported languages for translate
@@ -29,15 +37,6 @@ class PKTranslator extends Component
     public function getDefaultLanguage()
     {
         return $this->defaultLanguage;
-    }
-
-    /**
-     * Returns flag for hide langUrl
-     * @return string
-     */
-    public function getHideLangUrl()
-    {
-        return $this->hideLangUrl;
     }
 
     /**

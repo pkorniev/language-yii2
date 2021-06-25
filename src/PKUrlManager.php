@@ -25,12 +25,4 @@ class PKUrlManager extends UrlManager
         return '/' . $lang . $url;
     }
 
-    /*
-     public function goHome()
-    {
-        Yii::$app->setHomeUrl(Yii::$app->urlManager->createUrl(Yii::$app->getHomeUrl()));
-        return parent::goHome();
-    }
-    */
-
 }
