@@ -22,6 +22,11 @@ class PKRequest extends Request
         $langUrl = (isset($urlList[1]) && in_array($urlList[1],array_keys($supportedLanguages))) ? $urlList[1] : null;
 
         $cookies = Yii::$app->request->cookies;
+
+        if (!isset($supportedLanguages[$defaultLanguage])) {
+            throw new InvalidConfigException('The default language must be in the list of supported languages.');
+        }
+
         $lang = $cookies->getValue('language', $supportedLanguages[$defaultLanguage]);
 
         if (in_array($langUrl,array_flip($supportedLanguages))) {
